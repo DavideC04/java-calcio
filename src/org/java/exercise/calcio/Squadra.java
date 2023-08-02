@@ -10,12 +10,17 @@ import java.util.List;
 public class Squadra {
     // CAMPI
     private List<Giocatore> giocatori;
+    Allenatore allenatore;
 
 
 
     // COSTRUTTORI
     public Squadra(){
         giocatori = new ArrayList<>();
+    }
+
+    public Squadra(Giocatore[] giocatori, Allenatore allenatore) {
+
     }
 
 

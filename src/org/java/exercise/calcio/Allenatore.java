@@ -19,10 +19,14 @@ public class Allenatore extends Persona{
     // GETTER E SETTER
 
     // METODI
+    public String getStrategia(){
+        return strategia ? "Difensiva" : "Offensiva";
+    }
+
 
 
     @Override
     public String toString() {
-        return super.toString() + "Strategia: " + strategia;
+        return super.toString() + "strategia: " + strategia;
     }
 }

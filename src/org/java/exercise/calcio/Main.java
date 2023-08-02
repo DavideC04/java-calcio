@@ -11,26 +11,41 @@ public class Main {
 
     public static void main(String[] args) {
         Random random = new Random();
-        Giocatore[] squadra = new Giocatore[11];
+        Giocatore[] giocatori = new Giocatore[11];
 
         // itero un ciclo for
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < NOMI.length; i++) {
             // inizializzo
             String nomeGiocatore = NOMI[random.nextInt(NOMI.length)];
-            int etaGiocatore = random.nextInt(0, 40);
+            int etaGiocatore = random.nextInt(17, 40);
             String ruoloGiocatore = RUOLI[random.nextInt(RUOLI.length)];
-            squadra[i] = new Giocatore(nomeGiocatore, etaGiocatore, ruoloGiocatore);
+            giocatori[i] = new Giocatore(nomeGiocatore, etaGiocatore, ruoloGiocatore);
             
         }
             // informazioni allenatore
         String nomeAllenatore = NOMI[random.nextInt(NOMI.length)];
         int etaAllenatore = random.nextInt(36, 65);
+        boolean strategiaGioco = random.nextBoolean();
+        Allenatore allenatore = new Allenatore(nomeAllenatore, etaAllenatore, strategiaGioco);
+         String strategiaFinale = allenatore.getStrategia();
+
+
+        // creo l'oggetto squadra
+        Squadra squadra = new Squadra(giocatori, allenatore);
+
+
+
 
         // stampo la squadra
         // uso un for-each
-        for (Giocatore giocatore : squadra){
+        for (Giocatore giocatore : giocatori){
             System.out.println(giocatore);
         }
+
+        System.out.println(allenatore);
+        System.out.println("La strategia dell'allenatore è: " + strategiaFinale);
+
+
         /*
         System.out.println(Arrays.toString(NOMI));
         int i = random.nextInt(0, NOMI.length);

@@ -6,27 +6,27 @@ ogni allenatore ha la sua strategia (es: difensiva o offensiva)
 
 public class Allenatore extends Persona{
     // CAMPI
-    private  boolean strategia;
+    private  boolean eOffensiva;
 
     // COSTRUTTORI
 
     public Allenatore(String nome, int eta, boolean strategia) {
         super(nome, eta);
-        this.strategia = strategia;
+        this.eOffensiva = strategia;
     }
 
 
     // GETTER E SETTER
 
     // METODI
-    public String getStrategia(){
-        return strategia ? "Difensiva" : "Offensiva";
+    public String geteOffensiva(){
+        return eOffensiva ? "Difensiva" : "Offensiva";
     }
 
 
 
     @Override
     public String toString() {
-        return super.toString() + "strategia: " + strategia;
+        return super.toString();
     }
 }

@@ -11,6 +11,8 @@ public class Squadra {
     // CAMPI
     private List<Giocatore> giocatori;
     Allenatore allenatore;
+    private String nomeSquadra;
+    private int goal;
 
 
 
@@ -19,12 +21,27 @@ public class Squadra {
         giocatori = new ArrayList<>();
     }
 
-    public Squadra(Giocatore[] giocatori, Allenatore allenatore) {
+    public Squadra(List<Giocatore> giocatori, Allenatore allenatore, String nomeSquadra) {
+        this.giocatori = giocatori;
+        this.allenatore = allenatore;
+        this.nomeSquadra = nomeSquadra;
+    }
+
+    public void aumentaGoal() {
 
     }
 
 
+
     // GETTER E SETTER
+
+    public String getNomeSquadra() {
+        return nomeSquadra;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
 
 
     // METODI

@@ -1,6 +1,6 @@
 package org.java.exercise.calcio;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -29,6 +29,7 @@ public class Main {
         Random random = new Random();
         Giocatore[] giocatori = new Giocatore[11];
 
+
         // itero un ciclo for
         for (int i = 0; i < 11; i++) {
             // inizializzo
@@ -36,18 +37,19 @@ public class Main {
             int etaGiocatore = random.nextInt(17, 40);
             String ruoloGiocatore = RUOLI[random.nextInt(RUOLI.length)];
             giocatori[i] = new Giocatore(nomeGiocatore, etaGiocatore, ruoloGiocatore);
-            
         }
+
+
             // informazioni allenatore
         String nomeAllenatore = NOMI[random.nextInt(NOMI.length)];
         int etaAllenatore = random.nextInt(36, 65);
         boolean strategiaGioco = random.nextBoolean();
         Allenatore allenatore = new Allenatore(nomeAllenatore, etaAllenatore, strategiaGioco);
-         String strategiaFinale = allenatore.getStrategia();
+         String strategiaFinale = allenatore.geteOffensiva();
 
 
-        // creo l'oggetto squadra
-        Squadra squadra = new Squadra(giocatori, allenatore);
+
+
 
 
         System.out.println("Dream Team");
@@ -58,10 +60,47 @@ public class Main {
             System.out.println(giocatore);
         }
 
+        System.out.println();
         // stampo i dati dell'allenatore
         System.out.println(allenatore);
         System.out.println("La strategia dell'allenatore è: " + strategiaFinale);
 
+
+        // Arbitro
+        String nomeArbitro = NOMI[random.nextInt(NOMI.length)];
+        int etaArbitro = random.nextInt(14, 40);
+        String ruoloArbitro = "Arbitro principale";
+
+        // creo l'oggetto arbitro
+        Arbitro arbitro = new Arbitro(nomeArbitro, etaArbitro, ruoloArbitro);
+
+        System.out.println();
+
+        // stampo l'arbitro nel terminale
+        System.out.println(arbitro);
+
+        // creazione delle squadre
+        String nomeSquadraCasa = "Red Team";
+        String nomeSquadraOspite = "Blue Team";
+        Squadra squadraCasa = new Squadra(List.of(giocatori), allenatore, nomeSquadraCasa);
+        Squadra squadraOspite = new Squadra(List.of(giocatori), allenatore, nomeSquadraOspite);
+
+
+        // partita
+        Partita partita = new Partita(squadraCasa, squadraOspite, arbitro);
+
+        System.out.println();
+        partita.partitaIniziata();
+
+        System.out.println();
+
+        partita.goalCasuale();
+        partita.goalCasuale();
+        partita.goalCasuale();
+
+        System.out.println();
+
+        partita.partitaConclusa();
 
         /*
         System.out.println(Arrays.toString(NOMI));

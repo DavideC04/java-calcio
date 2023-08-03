@@ -24,13 +24,16 @@ public class Main {
 
     // creo un array di ruoli
     private static final String[] RUOLI ={"Portiere", "Difensore", "Centrocampista", "Attaccante"};
+    private static final String[] STRATEGIA = {"Difensiva", "Offensiva", "Mista"};
 
     public static void main(String[] args) {
+        // creo l'oggetto random
         Random random = new Random();
+        // creo l'oggetto Giocatore
         Giocatore[] giocatori = new Giocatore[11];
 
 
-        // itero un ciclo for
+        // itero un ciclo for per generare i giocatori con valori casuali
         for (int i = 0; i < 11; i++) {
             // inizializzo
             String nomeGiocatore = NOMI[random.nextInt(NOMI.length)];
@@ -40,16 +43,11 @@ public class Main {
         }
 
 
-            // informazioni allenatore
+            // genero l'allenatore con valori casuali
         String nomeAllenatore = NOMI[random.nextInt(NOMI.length)];
         int etaAllenatore = random.nextInt(36, 65);
-        boolean strategiaGioco = random.nextBoolean();
-        Allenatore allenatore = new Allenatore(nomeAllenatore, etaAllenatore, strategiaGioco);
-         String strategiaFinale = allenatore.geteOffensiva();
-
-
-
-
+        String strategiaDiGioco = STRATEGIA[random.nextInt(STRATEGIA.length)];
+        Allenatore allenatore = new Allenatore(nomeAllenatore, etaAllenatore, strategiaDiGioco);
 
 
         System.out.println("Dream Team");
@@ -62,11 +60,12 @@ public class Main {
 
         System.out.println();
         // stampo i dati dell'allenatore
+        System.out.println("Allenatore:");
         System.out.println(allenatore);
-        System.out.println("La strategia dell'allenatore è: " + strategiaFinale);
 
 
-        // Arbitro
+
+        // creo l'arbitro con valori casuali
         String nomeArbitro = NOMI[random.nextInt(NOMI.length)];
         int etaArbitro = random.nextInt(14, 40);
         String ruoloArbitro = "Arbitro principale";
@@ -77,37 +76,36 @@ public class Main {
         System.out.println();
 
         // stampo l'arbitro nel terminale
+        System.out.println("Arbitro:");
         System.out.println(arbitro);
 
         // creazione delle squadre
-        String nomeSquadraCasa = "Red Team";
-        String nomeSquadraOspite = "Blue Team";
-        Squadra squadraCasa = new Squadra(List.of(giocatori), allenatore, nomeSquadraCasa);
-        Squadra squadraOspite = new Squadra(List.of(giocatori), allenatore, nomeSquadraOspite);
+        Squadra squadraCasa = new Squadra("Red Team", List.of(giocatori), allenatore);
+        Squadra squadraOspite = new Squadra("Blue team", List.of(giocatori), allenatore);
+
+        // inizializzo una variabile booleana di inizio partita
+        boolean inizio = false;
+        // inizializzo una variabile di goal a 0
+        int goal = 0;
 
 
         // partita
-        Partita partita = new Partita(squadraCasa, squadraOspite, arbitro);
+        Partita partita = new Partita(squadraCasa, squadraOspite, arbitro, inizio, goal);
 
         System.out.println();
+        // inizio partita
         partita.partitaIniziata();
 
         System.out.println();
-
+        // inserisco dei goal casuali
+        partita.goalCasuale();
         partita.goalCasuale();
         partita.goalCasuale();
         partita.goalCasuale();
 
         System.out.println();
-
+        // fine partita
         partita.partitaConclusa();
-
-        /*
-        System.out.println(Arrays.toString(NOMI));
-        int i = random.nextInt(0, NOMI.length);
-        System.out.println(i);
-        System.out.println(NOMI[i]);
-        */
 
     }
 }

@@ -12,20 +12,20 @@ import java.util.Random;
 
 public class Partita {
     // CAMPI
-    private Squadra casa;
-    private Squadra ospite;
+    private Squadra squadraCasa;
+    private Squadra squadraOspite;
     private Arbitro arbitro;
-    private boolean iniziata;
+    private boolean partitaIniziata;
     private int goal;
 
     // COSTRUTTORI
 
-    public Partita(Squadra casa, Squadra ospite, Arbitro arbitro) {
-        this.casa = casa;
-        this.ospite = ospite;
+    public Partita(Squadra casa, Squadra ospite, Arbitro arbitro, boolean partitaIniziata, int goal) {
+        this.squadraCasa = casa;
+        this.squadraOspite = ospite;
         this.arbitro = arbitro;
         // inizializzo la booleana come false
-        this.iniziata = false;
+        this.partitaIniziata = false;
         // inizializzo il contatore dei goal uguale a 0
         this.goal = 0;
     }
@@ -34,42 +34,55 @@ public class Partita {
     // GETTER E SETTER
 
 
+    public Squadra getSquadraCasa() {
+        return squadraCasa;
+    }
+
+    public Squadra getSquadraOspite() {
+        return squadraOspite;
+    }
+
     // METODI
     public void aumentaGoal(){
         goal++;
     }
 
     public void partitaIniziata(){
-        this.iniziata= true;
+        this.partitaIniziata = true;
         System.out.println("la partita è iniziata!");
     }
 
     // non è possibile segnare un goal se la partita non è ancora iniziata! In questo caso il sistema deve restituire un messaggio d’errore
     public void  goalCasuale(){
-        if (!iniziata){
+        // se la partita non è iniziata, mpm è possibile fare goal
+        if (!partitaIniziata){
             System.out.println("Errore: la partita non è ancora iniziata!");
 
         }
         // goal segnato da una squadra casuale
         Random random = new Random();
         boolean goalSquadraDiCasa = random.nextBoolean();
+        // se la squadra di casa ha segnato, stampo sul terminale
         if (goalSquadraDiCasa){
-            System.out.println("Gooooaaaaaalllll!!!!!! Ha segnato la squadra di casa: " + casa.getNomeSquadra());
-            casa.aumentaGoal();
+            System.out.println("Gooooaaaaaalllll!!!!!! Ha segnato la squadra di casa: " + squadraCasa.getNomeSquadra());
+            // incremento il contatore dei goal
+            squadraCasa.aumentaGoal();
         } else {
-            System.out.println("Gooooaaaaaalllll!!!!!! Ha segnato la squadra ospite: " + ospite.getNomeSquadra());
-            ospite.aumentaGoal();
+            // altrimenti, stampo che ha segnato la squadra ospite
+            System.out.println("Gooooaaaaaalllll!!!!!! Ha segnato la squadra ospite: " + squadraOspite.getNomeSquadra());
+            // incremento il contatore dei goal
+            squadraOspite.aumentaGoal();
         }
         goal++;
 
 
     }
 
-
+        // metodo per concludere la partita
     public void partitaConclusa(){
-        this.iniziata = false;
+        this.partitaIniziata = false;
         System.out.println("La partita è terminata!");
-        System.out.println("Risultato finale: " + casa.getNomeSquadra() + " " + casa.getGoal() + " - " + ospite.getGoal() + " " + ospite.getNomeSquadra());    }
+          }
 
 
 

@@ -9,10 +9,11 @@ import java.util.List;
 
 public class Squadra {
     // CAMPI
+    private String nomeSquadra;
     private List<Giocatore> giocatori;
     Allenatore allenatore;
-    private String nomeSquadra;
-    private int goal;
+
+
 
 
 
@@ -21,7 +22,7 @@ public class Squadra {
         giocatori = new ArrayList<>();
     }
 
-    public Squadra(List<Giocatore> giocatori, Allenatore allenatore, String nomeSquadra) {
+    public Squadra(String nomeSquadra, List<Giocatore> giocatori, Allenatore allenatore) {
         this.giocatori = giocatori;
         this.allenatore = allenatore;
         this.nomeSquadra = nomeSquadra;
@@ -39,9 +40,7 @@ public class Squadra {
         return nomeSquadra;
     }
 
-    public int getGoal() {
-        return goal;
-    }
+
 
 
     // METODI

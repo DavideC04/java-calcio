@@ -18,6 +18,11 @@ public class Giocatore extends Persona{
 
     // GETTER E SETTER
 
+    public String getRuolo() {
+        return ruolo;
+    }
+
+
     // METODI
 
 
